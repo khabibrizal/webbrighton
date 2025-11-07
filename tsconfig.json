@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "Node16",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "baseUrl": "./",
+    "outDir": "dist",
+    "paths": {
+      "@support/*": ["src/support/*"],
+      "@pages/*": ["src/pages/*"],
+      "@steps/*": ["src/steps/*"]
+    }
+  },
+  "include": ["src/**/*.ts"]
+}

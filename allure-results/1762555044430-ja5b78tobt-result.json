@@ -1,0 +1,74 @@
+{
+  "uuid": "1762555044430-culi7tbn4tm",
+  "name": "Login to Application: Successful login with valid credentials",
+  "fullName": "Login to Application: Successful login with valid credentials",
+  "status": "passed",
+  "stage": "finished",
+  "start": 1762555044430,
+  "stop": 1762555044930,
+  "steps": [
+    {
+      "name": "I am on the login page",
+      "status": "PASSED",
+      "start": 1762555040566,
+      "stop": 1762555040576
+    },
+    {
+      "name": "I enter valid username and password",
+      "status": "PASSED",
+      "start": 1762555042496,
+      "stop": 1762555042506
+    },
+    {
+      "name": "I click the login button",
+      "status": "PASSED",
+      "start": 1762555042499,
+      "stop": 1762555042509
+    },
+    {
+      "name": "I should see the dashboard page",
+      "status": "PASSED",
+      "start": 1762555042576,
+      "stop": 1762555042586
+    },
+    {
+      "name": "I click one of them product \"Sauce Labs Bike Light\"",
+      "status": "PASSED",
+      "start": 1762555043412,
+      "stop": 1762555043422
+    },
+    {
+      "name": "I should see the detail product page",
+      "status": "PASSED",
+      "start": 1762555043429,
+      "stop": 1762555043439
+    },
+    {
+      "name": "I click the add to cart button",
+      "status": "PASSED",
+      "start": 1762555044174,
+      "stop": 1762555044184
+    },
+    {
+      "name": "I should see add to cart button change to remove button",
+      "status": "PASSED",
+      "start": 1762555044181,
+      "stop": 1762555044191
+    }
+  ],
+  "attachments": [],
+  "labels": [
+    {
+      "name": "feature",
+      "value": "Login to Application"
+    },
+    {
+      "name": "framework",
+      "value": "cucumber"
+    },
+    {
+      "name": "language",
+      "value": "typescript"
+    }
+  ]
+}
