@@ -4,12 +4,13 @@ Feature: Login to Application
   I want to login to the application
   So that I can access my dashboard
 
+  @login
   Scenario: Successful login with valid credentials
-    Given I am on the login page
-    When I enter valid username and password
-    And I click the login button
-    Then I should see the dashboard page
-    And I click one of them product "Sauce Labs Bike Light"
-    Then I should see the detail product page
-    And I click the add to cart button
-    Then I should see add to cart button change to remove button
+    Given pengguna berada di halaman Home
+    When pengguna klik icon people
+    And pengguna klik Tab Agen Brighton
+    When pengguna input user dan password
+    And klik button login
+    Then pengguna berhasil login
+
+ 

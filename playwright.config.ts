@@ -1,4 +1,28 @@
-import { defineConfig, devices } from '@playwright/test';
+import { PlaywrightTestConfig,defineConfig,devices } from '@playwright/test';
+
+const config: PlaywrightTestConfig = {
+  testDir: './tests',
+  timeout: 60000,
+  use: {
+    headless: false,
+    viewport: { width: 1280, height: 720 },
+     storageState: 'storageState.json', //  PAKAI SESSION
+    ignoreHTTPSErrors: true,
+  },
+  projects: [
+    { name: 'chromium', use: { browserName: 'chromium' } },
+    { name: 'firefox',  use: { browserName: 'firefox' } },
+    { name: 'webkit',   use: { browserName: 'webkit' } },
+    {
+      name: 'setup',
+      testMatch: /.*login\.setup\.ts/
+    },
+    {
+      name: 'e2e',
+      dependencies: ['setup']
+    }
+  ]
+};
 
 /**
  * Read environment variables from file.

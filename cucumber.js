@@ -3,14 +3,15 @@ module.exports = {
     require: [
       'ts-node/register',
       'tsconfig-paths/register',
-      './src/steps/**/*.ts',
+      './src/support/world.ts',
       './src/support/hooks.ts',
-      './src/support/allure-hooks.ts'
+      './src/support/allure-hooks.ts',
+      './src/steps/**/*.ts'
     ],
+    
     format: [
       'progress'
-      
-           
+                
       
     ],
     formatOptions: {
@@ -23,6 +24,7 @@ module.exports = {
     paths: ['./src/features/**/*.feature'],
 
     parallel: 1,
+    publishQuiet: true
     
   }
 };

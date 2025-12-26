@@ -1,51 +1,47 @@
 import { Given, When, Then } from '@cucumber/cucumber';
-import { expect } from '@playwright/test';
-import { CustomWorld } from '../support/world';
+import { Browser, Page } from '@playwright/test';
 import { LoginPage } from '../pages/login.page';
-import { ProductPage } from '../pages/product.page';
-import { DetailProductPage } from '../pages/detailproduct.page';
+import { setDefaultTimeout } from '@cucumber/cucumber';
 
+//setDefaultTimeout(60 * 1000);
 
-
+let page: Page;
 let loginPage: LoginPage;
-let productPage: ProductPage;
-let detailProductPage: DetailProductPage;
 
-Given('I am on the login page', async function (this: CustomWorld) {
-  loginPage = new LoginPage(this.page);
-  await loginPage.navigate();
+Given('pengguna berada di halaman Home', async function () {
+  const browser = this.browser; // dari World
+  page = await browser.newPage();
+  loginPage = new LoginPage(page);
+  await loginPage.openHomePage();
 });
 
-When('I enter valid username and password', async function () {
-  await loginPage.login('standard_user', 'secret_sauce');
+When('pengguna klik icon people', async function () {
+  await page.waitForLoadState('domcontentloaded');
+
+  const btn = page.getByRole('button', {
+    name: 'Menu Profil'
+  });
+
+  await btn.waitFor({ timeout: 30000 });
+  await btn.click({ force: true });
 });
 
-When('I click the login button', async function () {
-  // Tombol login sudah diklik di method login()
+
+When('pengguna klik Tab Agen Brighton', async function () {
+  await loginPage.clickTabAgenBrighton();
 });
 
-Then('I should see the dashboard page', async function () {
-  productPage = new ProductPage(this.page);
-  const title = await productPage.getPageTitle();
-  expect(title).toContain('Products');
+When('pengguna input user dan password', async function () {
+  await loginPage.inputCredential(
+    'husni',
+    'ITpro25'
+  );
 });
 
-When('I click one of them product {string}', async function (productName: string) {
-  productPage = new ProductPage(this.page);
-  await productPage.clickProduct(productName);
+When('klik button login', async function () {
+  await loginPage.clickLoginButton();
 });
 
-Then('I should see the detail product page', async function () {
-  detailProductPage = new DetailProductPage(this.page);
-  const productTitle = await detailProductPage.getProductTitle();
-  expect(productTitle).not.toBeNull();
-});
-
-When('I click the add to cart button', async function () {
-  await detailProductPage.clickAddToCart();
-});
-
-Then('I should see add to cart button change to remove button', async function () {
-  const removeBtn = await detailProductPage.getRemoveButtonText();
-  expect(removeBtn?.toLowerCase()).toContain('remove');
+Then('pengguna berhasil login', async function ()  {
+  await loginPage.verifyLoginSuccess();
 });
