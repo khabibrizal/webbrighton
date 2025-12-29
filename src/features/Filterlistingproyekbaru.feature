@@ -8,9 +8,9 @@ Feature: filtersekitarsaya
     Given user berada di menu proyekbarupage 
     When user klik button filter proyekbaru
     And user pilih kategori
-    And pilih kota
-    And pilih pengembang
     And pilih tipe
+    And pilih pengembang
+    And pilih kota
     When user klik button cariproyekbaru
     Then listing properti Proyek baru tampil sesuai filter proyekbaru
 

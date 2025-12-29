@@ -75,40 +75,30 @@ export class ProyekBaruPage {
 }
 
 async selectKota(kota: string) {
+  // 1. Klik dropdown KOTA
   const dialog = this.page.getByRole('dialog');
+  const comboboxButtons = dialog.locator('button[role="combobox"]');
 
-  // 1️⃣ BUKA DROPDOWN KOTA (FIELD TEXT)
-  const kotaField = dialog.getByText('Pilih Kota', { exact: true });
-  await kotaField.click({ force: true });
+  const kotaDropdown = comboboxButtons.nth(1);
+  await kotaDropdown.click();
 
-  // 2️⃣ TUNGGU LIST KOTA MUNCUL (RADIX PORTAL)
-  const listContainer = this.page.locator('[role="listbox"]');
-  await listContainer.waitFor({ state: 'visible', timeout: 15000 });
+  // 2. Ambil LISTBOX TERAKHIR (yang baru kebuka)
+  const listbox = this.page
+    .locator('[role="listbox"]')
+    .last();
 
-  // 3️⃣ SCROLL LIST SAMPAI KOTA KETEMU
-  let kotaOption;
+  await listbox.waitFor({ state: 'visible', timeout: 10000 });
 
-  for (let i = 0; i < 15; i++) {
-    kotaOption = this.page
-      .locator('[role="option"]')
-      .filter({ hasText: new RegExp(`^${kota}$`, 'i') });
+  // 3. Pilih kota
+  const kotaOption = listbox
+    .locator('[role="option"]')
+    .filter({ hasText: new RegExp(`^${kota}$`, 'i') })
+    .first();
 
-    if (await kotaOption.count()) break;
-
-    await listContainer.evaluate(el => {
-      el.scrollTop += 300;
-    });
-
-    await this.page.waitForTimeout(200);
-  }
-
-  if (!kotaOption || !(await kotaOption.count())) {
-    throw new Error(`Kota "${kota}" tidak ditemukan`);
-  }
-
-  // 4️⃣ KLIK KOTA
-  await kotaOption.first().click();
+  await kotaOption.scrollIntoViewIfNeeded();
+  await kotaOption.click();
 }
+
 
 async selectpengembang(pengembang: string) {
   const dialog = this.page.getByRole('dialog');

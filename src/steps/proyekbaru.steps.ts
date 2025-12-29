@@ -195,14 +195,15 @@ When(
   }
 );
 
-When(
-  'pilih kota',
+
+ When(
+  'pilih tipe',
   async function (this: CustomWorld)  {
-    
-    await proyekBaruPage.selectKota('Bandung');
+
+    await proyekBaruPage.selecttipe();
   });
 
-  When(
+When(
   'pilih pengembang',
   async function (this: CustomWorld)  {
 
@@ -210,10 +211,10 @@ When(
   });
 
   When(
-  'pilih tipe',
+  'pilih kota',
   async function (this: CustomWorld)  {
 
-    await proyekBaruPage.selecttipe();
+    await proyekBaruPage.selectKota('Bandung');
   });
 
   When('user klik button cariproyekbaru', async function () {
