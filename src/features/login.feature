@@ -11,6 +11,7 @@ Feature: Login to Application
     And pengguna klik Tab Agen Brighton
     When pengguna input user dan password
     And klik button login
+    When klik icon people
     Then pengguna berhasil login
 
  

@@ -42,6 +42,10 @@ When('klik button login', async function () {
   await loginPage.clickLoginButton();
 });
 
+When('klik icon people', async function () {
+  await loginPage.clickPeopleIcon();
+});
+
 Then('pengguna berhasil login', async function ()  {
   await loginPage.verifyLoginSuccess();
 });

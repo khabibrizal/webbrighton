@@ -1,3 +1,4 @@
+
 module.exports = {
   default: {
     require: [
@@ -5,26 +6,18 @@ module.exports = {
       'tsconfig-paths/register',
       './src/support/world.ts',
       './src/support/hooks.ts',
-      './src/support/allure-hooks.ts',
       './src/steps/**/*.ts'
     ],
-    
+    //requireModule: ['ts-node/register'],
     format: [
       'progress'
-                
-      
+      //'allure-cucumberjs/reporter'
     ],
     formatOptions: {
-      allure: {
-        outputDir: 'allure-results',
-        attachments: true,
-        disableMochaHooks: true
-      }
+      //resultsDir: 'allure-results'
     },
-    paths: ['./src/features/**/*.feature'],
-
+     paths: ['./src/features/**/*.feature'],
     parallel: 1,
     publishQuiet: true
-    
   }
 };

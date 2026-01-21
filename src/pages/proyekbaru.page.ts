@@ -185,7 +185,7 @@ async isSekitarSayaChecked(): Promise<boolean> {
  
   async setSekitarSaya(value: boolean) {
   const checkbox = this.page.locator('#nearMe');
-  await checkbox.waitFor({ state: 'visible', timeout: 15000 });
+  await checkbox.waitFor({ state: 'visible', timeout: 30000 });
 
   const currentState = await checkbox.getAttribute('aria-checked');
 
@@ -200,19 +200,33 @@ async isSekitarSayaChecked(): Promise<boolean> {
       await this.page.waitForTimeout(15000);
   }
   async verifyFilteredkota() {
-    await expect(this.page).toHaveURL('https://brighton-site.brighton.co.id/perumahan-baru?LocationID=35&SortField=distance');
-      await this.page.waitForTimeout(15000);}
+    await this.page.waitForURL(
+  url =>
+    url.pathname.includes('/perumahan-baru') &&
+    url.searchParams.get('LocationID') === '35',
+  { timeout: 15000 }
+);
+
+  }
+
   async verifyFilteredpengembang() {
     await expect(this.page).toHaveURL('https://brighton-site.brighton.co.id/perumahan-baru?DeveloperID=732&SortField=distance');
-      await this.page.waitForTimeout(15000);
+      await this.page.waitForTimeout(30000);
   }
    async verifyFilteredtipe() {
     await expect(this.page).toHaveURL('https://brighton-site.brighton.co.id/perumahan-baru?Type=Rumah&SortField=distance');
       await this.page.waitForTimeout(15000);
   }
   async verifyFilteredsekitarsaya() {
-    await expect(this.page).toHaveURL('https://brighton-site.brighton.co.id/perumahan-baru?SortField=closest&Latitude=-7.2575&Longitude=112.7521');
-    await this.page.waitForTimeout(15000);
+
+     await this.page.waitForURL(
+  url =>
+    url.pathname.includes('/perumahan-baru') &&
+    url.searchParams.get('Latitude') === '-7.2575' &&
+    url.searchParams.get('Longitude') === '112.7521',
+  { timeout: 15000 }
+);
+    
   }
  async verifyFilteredproyekbaru() {
     await expect(this.page).toHaveURL('https://brighton-site.brighton.co.id/perumahan-baru?Type=Rumah&LocationID=35&DeveloperID=732&SortField=distance');

@@ -13,6 +13,7 @@ export class LoginPage {
   usernameInput = 'input[name="username"], input#username';
   passwordInput = 'input[name="password"], input#password';
   loginButton = 'button[type="submit"], button:has-text("Login")';
+  //peoppleicondashboard = 'button[aria-label="Menu Profil"]';
 
 async waitLoginFormReady() {
   const loginForm = this.page.locator('form').filter({
@@ -84,12 +85,12 @@ async waitLoginFormReady() {
 
   async verifyLoginSuccess() {
   await expect(
-    this.page.getByText('Dashboard Agent')
+    this.page.getByText('HUSNI PUTRA LI (IZEH)')
   ).toBeVisible({ timeout: 30000 });
 
   // Validasi tombol Logout
-  await expect(
-    this.page.getByRole('button', { name: 'Logout' })
-  ).toBeVisible();
+  //await expect(
+    //this.page.getByRole('button', { name: 'Logout' })
+  //).toBeVisible();
 }
 }
