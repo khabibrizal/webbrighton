@@ -10,11 +10,11 @@ module.exports = {
     ],
     //requireModule: ['ts-node/register'],
     format: [
-      'progress'
-      //'allure-cucumberjs/reporter'
+      'progress',
+      'allure-cucumberjs/reporter'
     ],
     formatOptions: {
-      //resultsDir: 'allure-results'
+      resultsDir: 'allure-results'
     },
      paths: ['./src/features/**/*.feature'],
     parallel: 1,
